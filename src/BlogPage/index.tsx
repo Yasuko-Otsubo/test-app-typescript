@@ -24,7 +24,6 @@ const BlogPage = () => {
   const [post, setPost] = useState<Post | null>(null); //nullをいれるのはまだ値が設定されていない状態を表現するため
   const [error, setError] = useState<string |null>(null); 
   
-    
   ///////////////////////コンポーネントが初期化される、またはidが変更されるとuseEffectが実行///////////////////////
   useEffect(() => {
     const fetcher = async () => {
