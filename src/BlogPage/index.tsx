@@ -17,7 +17,7 @@ type Post = {
   categories: string[];
 };
 
-const BlogPage = () => {
+const BlogPage: React.FC = () => {
   const { id } = useParams(); // URLが/posts/1の場合、idには1が格納されます
 
   //データ用の状態管理 
