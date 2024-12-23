@@ -17,14 +17,13 @@ type Post = {
   categories: string[];
 };
 
-const BlogPage = () => {
+const BlogPage: React.FC = () => {
   const { id } = useParams(); // URLが/posts/1の場合、idには1が格納されます
 
   //データ用の状態管理 
   const [post, setPost] = useState<Post | null>(null); //nullをいれるのはまだ値が設定されていない状態を表現するため
   const [error, setError] = useState<string |null>(null); 
   
-    
   ///////////////////////コンポーネントが初期化される、またはidが変更されるとuseEffectが実行///////////////////////
   useEffect(() => {
     const fetcher = async () => {

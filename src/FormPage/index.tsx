@@ -2,9 +2,25 @@ import { useState } from 'react';
 import styles from './styles.module.css'
 
 
-const FormPage = () => {
+const FormPage: React.FC = () => {
+
+  type ContactForm = {
+    name: string;
+    email: string;
+    text: string;
+  };
+
+  //type Error = {
+  //  name: string;
+  //  email: string;
+  //  text: string;    
+  //}
+
+  // Error型はContactFormのキーを使い、それぞれの値をstringにする 型再利用
+  type Error = Record<keyof ContactForm, string>;
+
   //formのstateを初期化
-  const [ form, setForm ] = useState({ 
+  const [ form, setForm ] = useState<ContactForm>({ 
     name: '',
     email: '',
     text: ''
@@ -12,7 +28,7 @@ const FormPage = () => {
 
   //errorのstateを初期化
   //エラー状態の初期値は空文字
-  const [error, setError] = useState({
+  const [error, setError] = useState<Error>({
     name: '',
     email: '',
     text: ''
@@ -44,7 +60,7 @@ const FormPage = () => {
     let isValid = true; // バリデーションが成功したかどうかを確認するフラグ
 
     //////////////////// name area ////////////////////
-    const isValidNameLength = form.name.length > 30;//名前入力が30字未満
+    const isValidNameLength = form.name.length >= 30;//名前入力が30字未満
     if (!form.name.trim()) {  //名前が空（またはスペースのみ）の場合
       setError(prev => ({ ...prev, name: "お名前は必須です" })); // エラーメッセージをセット
       isValid = false; // バリデーション失敗
@@ -74,7 +90,7 @@ const FormPage = () => {
 
 
     //////////////////// text area ////////////////////
-    const isValidTextLength = form.name.length > 500 ;//名前入力が30字未満
+    const isValidTextLength = form.text.length >= 500 ;//名前入力が30字未満
     if (!form.text.trim()) {
       setError(prev => ({ ...prev, text: "本文は必須です" }));
       //return;

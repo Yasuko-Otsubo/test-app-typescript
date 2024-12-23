@@ -14,7 +14,7 @@ const truncateText = (text: string, maxLength: number) => {
 };
 
 
-const Home = () =>{
+const Home: React.FC = () =>{
 
   type Post = {
     id: string;
